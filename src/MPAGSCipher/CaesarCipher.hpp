@@ -1,6 +1,7 @@
 #ifndef MPAGSCIPHER_CAESARCIPHER_HPP
 #define MPAGSCIPHER_CAESARCIPHER_HPP
 
+#include "Cipher.hpp"
 #include "CipherMode.hpp"
 
 #include <cstddef>
@@ -16,7 +17,7 @@
  * \class CaesarCipher
  * \brief Encrypt or decrypt text using the Caesar cipher with the given key
  */
-class CaesarCipher {
+class CaesarCipher : public Cipher {
   public:
     /**
      * \brief Create a new CaesarCipher with the given key
@@ -40,11 +41,18 @@ class CaesarCipher {
      * \return the result of applying the cipher to the input text
      */
     std::string applyCipher(const std::string& inputText,
-                            const CipherMode cipherMode) const;
+                            const CipherMode cipherMode) const override;
 
   private:
     /// The cipher key, essentially a constant shift to be applied
     std::size_t key_{0};
+
+    /**
+     * \brief Friend class to allow testing of key formatting
+     * 
+     * \param cc Playfair cipher class from which the key value must be taken from
+     */
+    friend std::size_t testCaesarKeyFormat(CaesarCipher cc);
 };
 
 #endif

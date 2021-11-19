@@ -4,12 +4,13 @@
 
 #include "PlayfairCipher.hpp"
 
-TEST_CASE("Playfair Cipher encryption", "[playfair]") {
-  PlayfairCipher cc{"hello"};
-  REQUIRE( cc.applyCipher("BOBISSOMESORTOFJUNIORCOMPLEXXENOPHONEONEZEROTHING", CipherMode::Encrypt) == "FHIQXLTLKLTLSUFNPQPKETFENIOLVSWLTFIAFTLAKOWATEQOKPPA");
+std::string testPlayfairKeyFormat(PlayfairCipher pc)
+{
+    return pc.key_;
 }
 
-TEST_CASE("Playfair Cipher decryption", "[playfair]") {
-  PlayfairCipher cc{"hello"};
-  REQUIRE( cc.applyCipher("FHIQXLTLKLTLSUFNPQPKETFENIOLVSWLTFIAFTLAKOWATEQOKPPA", CipherMode::Decrypt) == "BOBISXSOMESORTOFIUNIORCOMPLEXQXENOPHONEONEZEROTHINGZ");
+TEST_CASE("Playfair Cipher key format", "[playfair]")
+{
+    PlayfairCipher pc{"this_is A badly DEFINE-d Key!1234567890"};
+    REQUIRE(testPlayfairKeyFormat(pc) == "THISABDLYEFNKCGMOPQRUVWXZ");
 }

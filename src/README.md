@@ -105,8 +105,12 @@ file supplied with the `-o` option.
     │   └── Doxyfile.in
     ├── LICENSE                         License file, in our case MIT
     ├── MPAGSCipher                     Subdirectory for MPAGSCipher library code
+    │   ├── Alphabet.cpp
     │   ├── CaesarCipher.cpp
     │   ├── CaesarCipher.hpp
+    │   ├── Cipher.hpp
+    │   ├── CipherFactory.cpp
+    │   ├── CipherFactory.hpp
     │   ├── CipherMode.hpp
     │   ├── CipherType.hpp
     │   ├── CMakeLists.txt
@@ -115,7 +119,9 @@ file supplied with the `-o` option.
     │   ├── ProcessCommandLine.cpp
     │   ├── ProcessCommandLine.hpp
     │   ├── TransformChar.cpp
-    │   └── TransformChar.hpp
+    │   ├── TransformChar.hpp
+    │   ├── VigenereCipher.cpp
+    │   └── VigenereCipher.hpp
     ├── mpags-cipher.cpp                Main program C++ source file
     ├── README.md                       This file, describes the project
     └── Testing                         Subdirectory for testing the MPAGSCipher library
