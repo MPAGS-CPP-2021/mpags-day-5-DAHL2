@@ -80,6 +80,7 @@ std::string VigenereCipher::applyCipher(const std::string& inputText,
 
         // We lookup the cipher at the given character, then apply that cipher
         //  with the input letter as a string
+        // Does this copy the object of the map, or by doing it on the same line is it made to be a reference?
         outputText +=
             charLookup_.at(key_char).applyCipher(input_char_string, cipherMode);
     }
