@@ -62,6 +62,13 @@ class PlayfairCipher : public Cipher {
 
     /// Lookup table to go from the coordinates to the character
     std::map<PlayfairCoords, char> coordLookup_;
+
+    /**
+     * \brief Friend class to allow testing of key formatting
+     * 
+     * \param pc Playfair cipher class from which the key value must be taken from
+     */
+    friend std::string testPlayfairKeyFormat(PlayfairCipher pc);
 };
 
 #endif

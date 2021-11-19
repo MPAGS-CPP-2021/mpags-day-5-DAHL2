@@ -61,9 +61,9 @@ class VigenereCipher : public Cipher {
     /**
      * \brief Friend class to allow testing of key formatting
      * 
-     * \param vc Vigenere cipher clas from which the key value must be taken from
+     * \param vc Vigenere cipher class from which the key value must be taken from
      */
-    friend std::string testKeyFormat(VigenereCipher vc);
+    friend std::string testVigenereKeyFormat(VigenereCipher vc);
 };
 
 #endif

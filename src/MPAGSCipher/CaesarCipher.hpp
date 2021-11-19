@@ -46,6 +46,13 @@ class CaesarCipher : public Cipher {
   private:
     /// The cipher key, essentially a constant shift to be applied
     std::size_t key_{0};
+
+    /**
+     * \brief Friend class to allow testing of key formatting
+     * 
+     * \param cc Playfair cipher class from which the key value must be taken from
+     */
+    friend std::size_t testCaesarKeyFormat(CaesarCipher cc);
 };
 
 #endif

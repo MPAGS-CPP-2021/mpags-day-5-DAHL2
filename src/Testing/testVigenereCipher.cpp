@@ -4,7 +4,7 @@
 
 #include "VigenereCipher.hpp"
 
-std::string testKeyFormat(VigenereCipher vc)
+std::string testVigenereKeyFormat(VigenereCipher vc)
 {
     return vc.key_;
 }
@@ -12,17 +12,5 @@ std::string testKeyFormat(VigenereCipher vc)
 TEST_CASE("Vigenere Cipher key format", "[vigenere]")
 {
     VigenereCipher vc{"this_is A badly DEFINE-d Key!1234567890"};
-    REQUIRE(testKeyFormat(vc) == "THISISABADLYDEFINEDKEY");
-}
-
-TEST_CASE("Vigenere Cipher encryption", "[vigenere]")
-{
-    VigenereCipher vc{"key"};
-    REQUIRE(vc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "RIJVSUYVJN");
-}
-
-TEST_CASE("Vigenere Cipher decryption", "[vigenere]")
-{
-    VigenereCipher vc{"key"};
-    REQUIRE(vc.applyCipher("RIJVSUYVJN", CipherMode::Decrypt) == "HELLOWORLD");
+    REQUIRE(testVigenereKeyFormat(vc) == "THISISABADLYDEFINEDKEY");
 }

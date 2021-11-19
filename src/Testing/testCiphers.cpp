@@ -13,11 +13,6 @@ bool testCipher(const Cipher& cipher, const CipherMode mode,
     return cipher.applyCipher(inputText, mode) == outputText;
 }
 
-std::string testKeyFormat(VigenereCipher vc)
-{
-    return vc.key_;
-}
-
 TEST_CASE("Caesar Cipher encryption", "[caesar]")
 {
     REQUIRE(testCipher(CaesarCipher(10), CipherMode::Encrypt, "HELLOWORLD",
@@ -54,10 +49,4 @@ TEST_CASE("Vigenere Cipher decryption", "[vigenere]")
 {
     REQUIRE(testCipher(VigenereCipher("key"), CipherMode::Decrypt, "RIJVSUYVJN",
                        "HELLOWORLD"));
-}
-
-TEST_CASE("Vigenere Cipher key format", "[vigenere]")
-{
-    VigenereCipher vc{"this_is A badly DEFINE-d Key!1234567890"};
-    REQUIRE(testKeyFormat(vc) == "THISISABADLYDEFINEDKEY");
 }
