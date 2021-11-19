@@ -1,11 +1,6 @@
-#include "CaesarCipher.hpp"
 #include "CipherFactory.hpp"
-#include "CipherMode.hpp"
-#include "CipherType.hpp"
-#include "PlayfairCipher.hpp"
 #include "ProcessCommandLine.hpp"
 #include "TransformChar.hpp"
-#include "VigenereCipher.hpp"
 
 #include <cctype>
 #include <fstream>
