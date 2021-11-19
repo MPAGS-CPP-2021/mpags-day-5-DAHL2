@@ -23,17 +23,22 @@ add_executable(testProcessCommandLine testProcessCommandLine.cpp)
 target_link_libraries(testProcessCommandLine PRIVATE Catch MPAGSCipher)
 add_test(NAME test-processcommandline COMMAND testProcessCommandLine)
 
-# Test CaesarCipher
-add_executable(testCaesarCipher testCaesarCipher.cpp)
-target_link_libraries(testCaesarCipher PRIVATE Catch MPAGSCipher)
-add_test(NAME test-caesarcipher COMMAND testCaesarCipher)
+# Test ciphers
+add_executable(testCiphers testCiphers.cpp)
+target_link_libraries(testCiphers PRIVATE Catch MPAGSCipher)
+add_test(NAME test-ciphers COMMAND testCiphers)
 
-# Test PlayfairCipher
-add_executable(testPlayfairCipher testPlayfairCipher.cpp)
-target_link_libraries(testPlayfairCipher PRIVATE Catch MPAGSCipher)
-add_test(NAME test-playfaircipher COMMAND testPlayfairCipher)
+# # Test CaesarCipher
+# add_executable(testCaesarCipher testCaesarCipher.cpp)
+# target_link_libraries(testCaesarCipher PRIVATE Catch MPAGSCipher)
+# add_test(NAME test-caesarcipher COMMAND testCaesarCipher)
 
-# Test VigenereCipher
-add_executable(testVigenereCipher testVigenereCipher.cpp)
-target_link_libraries(testVigenereCipher PRIVATE Catch MPAGSCipher)
-add_test(NAME test-vigenerecipher COMMAND testVigenereCipher)
+# # Test PlayfairCipher
+# add_executable(testPlayfairCipher testPlayfairCipher.cpp)
+# target_link_libraries(testPlayfairCipher PRIVATE Catch MPAGSCipher)
+# add_test(NAME test-playfaircipher COMMAND testPlayfairCipher)
+
+# # Test VigenereCipher
+# add_executable(testVigenereCipher testVigenereCipher.cpp)
+# target_link_libraries(testVigenereCipher PRIVATE Catch MPAGSCipher)
+# add_test(NAME test-vigenerecipher COMMAND testVigenereCipher)
