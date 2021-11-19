@@ -14,15 +14,29 @@ VigenereCipher::VigenereCipher(const std::string& key)
 
 void VigenereCipher::setKey(const std::string& key)
 {
+    // Ensure key is filled and capitalised
     _formatKey(key);
 
-    // loop over the key
+    size_t char_key{0};
 
-    // Find the letter position in the alphabet
+    using lookupEntry = std::pair<char, CaesarCipher>;
 
-    // Create a CaesarCipher using this position as a key
+    CaesarCipher char_cipher{0};
 
-    // Insert a std::pair of the letter and CaesarCipher into the lookup
+    for (char const& c : key_) {
+        // Don't need to add duplicates of entries to the map
+        if (charLookup_.count(c) > 0) {
+            continue;
+        }
+
+        // Find the letter position in the alphabet
+        char_key = Alphabet::alphabet.find(c);
+
+        char_cipher = CaesarCipher(char_key);
+
+        // Add the character and corresponding cipher to the map
+        charLookup_.insert(lookupEntry{c, char_cipher});
+    }
 }
 
 void VigenereCipher::_formatKey(const std::string& key)
@@ -36,53 +50,37 @@ void VigenereCipher::_formatKey(const std::string& key)
 
     // Check if the key is empty and replace with default if so
     if (key_.empty()) {
+        std::cout << "No key found. Resorting to default key: \"KEY\"."
+                  << std::endl;
         key_ = "KEY";
     }
+
     // If not empty, need to be certain letters are uppercase
     else {
-        // Make sure the key is uppercase
         std::transform(std::begin(key_), std::end(key_), std::begin(key_),
                        ::toupper);
     }
+
+    key_size_ = key_.size();
 }
 
 std::string VigenereCipher::applyCipher(const std::string& inputText,
                                         const CipherMode cipherMode) const
 {
-    // // Create the output string
-    // std::string outputText;
+    std::string outputText{""};
 
-    // // Loop over the input text
-    // char processedChar{'x'};
-    // for (const auto& origChar : inputText) {
-    //     // For each character in the input text, find the corresponding position in
-    //     // the alphabet by using an indexed loop over the alphabet container
-    //     for (std::size_t i{0}; i < Alphabet::size; ++i) {
-    //         if (origChar == Alphabet::alphabet[i]) {
-    //             // Apply the appropriate shift (depending on whether we're encrypting
-    //             // or decrypting) and determine the new character
-    //             // Can then break out of the loop over the alphabet
-    //             switch (cipherMode) {
-    //                 case CipherMode::Encrypt:
-    //                     processedChar =
-    //                         Alphabet::alphabet[(i + key_) % Alphabet::size];
-    //                     break;
-    //                 case CipherMode::Decrypt:
-    //                     processedChar =
-    //                         Alphabet::alphabet[(i + Alphabet::size - key_) %
-    //                                            Alphabet::size];
-    //                     break;
-    //             }
-    //             break;
-    //         }
-    //     }
+    std::string input_char_string{""};
+    char key_char{};
 
-    //     // Add the new character to the output text
-    //     outputText += processedChar;
-    // }
-    if (cipherMode == CipherMode::Encrypt) {
-        return inputText;
-    } else {
-        return "DECRYPT";
+    // For each letter in input:
+    for (size_t i{0}; i < inputText.size(); i++) {
+        input_char_string = inputText[i];
+
+        key_char = key_[i % key_size_];
+
+        outputText +=
+            charLookup_.at(key_char).applyCipher(input_char_string, cipherMode);
     }
+
+    return outputText;
 }

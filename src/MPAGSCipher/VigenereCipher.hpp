@@ -21,6 +21,7 @@ class VigenereCipher {
 
     /// The cipher key
     std::string key_ = "";
+    size_t key_size_ = 0;
     /// Lookup table
     std::map<char, CaesarCipher> charLookup_;
 };
