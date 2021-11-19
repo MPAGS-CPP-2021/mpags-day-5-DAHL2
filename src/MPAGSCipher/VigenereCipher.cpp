@@ -64,6 +64,8 @@ std::string VigenereCipher::applyCipher(const std::string& inputText,
                                         const CipherMode cipherMode) const
 {
     std::string outputText{""};
+    // Reserve the sting space for slightly faster processing
+    outputText.reserve(inputText.size());
 
     std::string input_char_string{""};
     char key_char{};
