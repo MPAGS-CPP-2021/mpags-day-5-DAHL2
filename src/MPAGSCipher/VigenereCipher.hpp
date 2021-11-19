@@ -24,6 +24,8 @@ class VigenereCipher {
     size_t key_size_ = 0;
     /// Lookup table
     std::map<char, CaesarCipher> charLookup_;
+
+    friend std::string testKeyFormat(VigenereCipher vc);
 };
 
 #endif
